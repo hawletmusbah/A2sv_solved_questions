@@ -1,0 +1,11 @@
+ from collections import Counter
+    def isSubset(self, a, b):
+        # Your code here
+        acount = self.Counter(a)
+         
+       
+        for i in b:
+            if acount[i]==0:
+                return False
+            acount[i]-=1
+        return True
