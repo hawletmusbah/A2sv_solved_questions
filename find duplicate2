@@ -1,0 +1,13 @@
+from collections import defaultdict
+class Solution:
+    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
+        d = defaultdict(list)
+        for p in paths:
+            l = p.split(" ")
+            parent = l[0]
+            for child in l[1:]:
+                child_path, child_content = child.split("(")
+                child_content = child_content[:-1]
+                full_path = f'{parent}/{child_path}'
+                d[child_content].append(full_path)
+        return list(x for x in d.values() if len(x) > 1)
