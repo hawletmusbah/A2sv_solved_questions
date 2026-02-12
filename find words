@@ -1,0 +1,15 @@
+class Solution:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        good_words = []
+        flag = False
+        count = Counter(chars)
+        print(count)
+        for word in words:
+            each_var = Counter(word)
+            flag = all(char in count and count[char] >= each_var[char]  for char in word)
+
+            if flag  :
+                good_words.append(word)
+        good_string = "".join(good_words)
+        return len(good_string)
+            
