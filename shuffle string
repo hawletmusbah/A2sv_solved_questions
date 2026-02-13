@@ -1,0 +1,13 @@
+class Solution:
+    def restoreString(self, s: str, indices: List[int]) -> str:
+        my_dict = defaultdict()
+        sorted_list = []
+        for index,val in enumerate(indices):
+            my_dict[val]=s[index]
+        print(my_dict)
+        sorted_dict = dict(sorted(my_dict.items()))
+        print(sorted_dict)
+        for i in sorted_dict:
+            sorted_list.append(sorted_dict[i])
+        print(sorted_list)
+        return "".join(sorted_list)
