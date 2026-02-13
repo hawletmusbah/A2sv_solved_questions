@@ -1,0 +1,14 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        dict={"I":1 ,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
+        total=0
+        for index,roman in enumerate(s):
+            if not len(s)-1 == index and dict[roman] < dict[s[index+1]]:
+              total-=dict[roman]
+            else:
+              total+=dict[roman]
+        return total
