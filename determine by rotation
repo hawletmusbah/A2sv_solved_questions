@@ -1,0 +1,23 @@
+class Solution(object):
+    def findRotation(self, mat, target):
+        """
+        :type mat: List[List[int]]
+        :type target: List[List[int]]
+        :rtype: bool
+        """
+        for j in range(4):
+            
+            model=[]
+            transposed_mat= [[row[i] for row in mat] for i in range(len(mat[0]))]
+            for newrow in transposed_mat:
+                
+                model.append(newrow[::-1])
+            if model==target:
+                return True
+            else:
+                mat=model
+        return False
+
+
+            
+        
