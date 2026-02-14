@@ -1,0 +1,22 @@
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        from collections import defaultdict 
+        dictt= defaultdict(int)
+        for domain in cpdomains:
+            domain_list = domain.split(" ")
+            value = int(domain_list[0])
+            key_list = domain_list[1].split(".")
+            i = 0
+            while i < len(key_list):
+                key = key_list[i:len(key_list)]
+                key = ".".join(key)
+                print(key)
+                i +=1
+                print(dictt)
+                if key in dictt:
+                    dictt[key] += value
+                else:
+                    dictt[key] = value
+        return [(f"{value} {key}") for  key,value in dictt.items()]
+
+        
