@@ -1,0 +1,22 @@
+class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        new_mat_1 =[]
+        new_matrix = []
+        for row in image:
+            new_row = row[::-1]
+            new_matrix.append(new_row)
+            new_row_1 = []
+        print(new_matrix)
+        for row_1 in new_matrix:
+            for i in row_1:
+                if i == 0:
+                    i += 1
+                    new_row_1.append(i)
+                else:
+                    i -= 1
+                    new_row_1.append(i)
+                
+            new_mat_1.append(new_row_1)
+            new_row_1 = []
+        return new_mat_1
+        
