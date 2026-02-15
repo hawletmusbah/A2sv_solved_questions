@@ -1,0 +1,16 @@
+class Solution(object):
+    def countPairs(self, nums, k):
+        count=0
+        for i,ei in enumerate(nums):
+            for j,ej in enumerate(nums):
+                if  i < j and ei==ej and i*j % k ==0:
+                    count+=1
+        return count
+
+
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
