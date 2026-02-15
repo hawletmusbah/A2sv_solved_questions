@@ -1,0 +1,38 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        pattern_list =[]
+        for i in pattern:
+            pattern_list.append(i)
+        s_list = s.split(' ')
+        if len(s_list) != len(pattern_list):
+            return False
+        my_dict_1 =dict(zip(pattern_list,s_list))
+        my_dict_2 = dict(zip(s_list,pattern_list))
+        print(my_dict_1)
+        print(my_dict_2)
+        swaped_dict_1 ={}
+        for key,value in my_dict_1.items():
+            swaped_dict_1[value]=key
+
+       
+
+        if len(my_dict_2) != len(my_dict_1):
+            return False
+        else:
+
+            listt_2 = list(my_dict_2.values())
+            listt_1 = list(swaped_dict_1.values())
+
+            for i in range(len(my_dict_1)):
+                n=listt_1[i]
+                m=listt_2[i]
+                if m != n:
+                    return False
+            return True
+
+           
+
+
+        
+         
+        
