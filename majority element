@@ -1,0 +1,11 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res_list = []
+        freq_dict = Counter(nums)
+        m = n//3
+        for i in freq_dict:
+            if freq_dict[i] > m:
+                res_list.append(i)
+        return res_list
+        
