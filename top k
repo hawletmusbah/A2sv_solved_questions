@@ -1,0 +1,16 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        new_list =[]
+        result = []
+        counter_dict = Counter(nums)
+        for val in counter_dict.values():
+            new_list.append(val)
+        new_list.sort(reverse = True)
+        max_values = new_list[ : k]
+        for j,value in counter_dict.items():
+            if value in max_values:
+                result.append(j)
+        return result
+
+
+        
