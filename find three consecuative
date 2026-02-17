@@ -1,0 +1,12 @@
+class Solution:
+    def sumOfThree(self, num: int) -> List[int]:
+        num_list =[]
+        num -= 3
+        if num % 3 == 0:
+            num_1 = num //3
+            num_list.extend([num_1,num_1 + 1,num_1+2])
+            
+
+        else :
+            num_list = []
+        return num_list
