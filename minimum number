@@ -1,0 +1,12 @@
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        answer = 0
+        count = Counter(s)
+        for i in t :
+            if i in count and count[i] > 0 :
+                count[i] -=1
+            else:
+                answer += 1
+        return answer
+       
+       
