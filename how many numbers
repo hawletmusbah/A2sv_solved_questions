@@ -1,0 +1,15 @@
+class Solution(object):
+    def smallerNumbersThanCurrent(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        my_list=[]
+        count=0
+        for i in nums:
+            for j in nums:
+                if i > j:
+                    count+=1
+            my_list.append(count)
+            count=0
+        return my_list
