@@ -1,0 +1,49 @@
+t = int(input())
+
+for j in range(t):
+    n, x, k = map(int, input().split())
+    string = input()
+
+    count_0 = 0
+
+    # First simulate once to find the first time we reach 0
+    time_to_zero = 0
+    cur = x
+    for i in range(n):
+        if string[i] == "L":
+            cur -= 1
+        else:  
+            cur += 1
+        time_to_zero += 1
+        if cur == 0:
+            break
+    if cur != 0:
+        print(0)
+        continue
+
+    count_0 = 1
+    k -= time_to_zero
+    if k < 0:
+        print(0)
+        continue
+
+    time_cycle = 0
+    cur2 = 0
+    for i in range(n):
+        if string[i] == "L":
+            cur2 -= 1
+        else:
+            cur2 += 1
+        time_cycle += 1
+        if cur2 == 0:
+            break
+
+   
+    if cur2 != 0:
+        print(count_0)
+        continue
+
+
+    count_0 += k // time_cycle
+
+    print(count_0)
