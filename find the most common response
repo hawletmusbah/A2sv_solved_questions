@@ -1,0 +1,26 @@
+class Solution:
+    def findCommonResponse(self, responses: List[List[str]]) -> str:
+        my_list =[]
+        new_list = []
+        valuess =[]
+        for i in responses:
+            no_dup = set(i)
+            
+            my_list.append(list(no_dup))
+           
+        for j in my_list:
+            for k in j:
+                new_list.append(k)
+        
+        a = Counter(new_list)
+        max_value = max(a.values())
+        end_list = [key for key,value in a.items() if value == max_value]
+        
+        
+        if len(end_list) > 1:
+            x = sorted(end_list)
+            
+            return x[0]
+        return end_list[0]
+        
+        
