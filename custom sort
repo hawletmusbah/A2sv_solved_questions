@@ -1,0 +1,11 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        new_s =[]
+        count = Counter(s)
+        for i in order:
+            if i in count:
+                new_s.extend([i] * count[i])
+                del count[i]
+        for char,ind in count.items():
+            new_s.extend([char]* ind)
+        return ''.join(new_s)
