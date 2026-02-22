@@ -1,0 +1,32 @@
+class Solution:
+    def removeComments(self, source: List[str]) -> List[str]:
+        res = []
+        tempo =[]
+        in_block = False
+        for line in source:
+            i = 0
+            while i < len(line):
+                string = line[i]
+                if in_block:
+                    if string == '*' and i+1 < len(line) and line[i+1] == '/':
+                        in_block = False
+                        i+=1
+                else:
+                    if string == '/' and i+1 < len(line) and line[i+1] == '/':
+                        break
+
+                    elif string == '/' and i+1 < len(line) and line[i+1] == '*':
+                        in_block = True
+                        i+=1
+                    else:
+                        tempo.append(string)
+                i+=1
+            if tempo and not in_block:
+                res.append(''.join(tempo))
+                tempo = []
+        return res
+
+
+
+
+        
