@@ -1,0 +1,38 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        if len(word1) != len(word2):
+            return False
+        w_1counter = Counter(word1)
+        w_2counter = Counter(word2)
+        list_1 = []
+        list_2 = []
+        listt_1 = []
+        listt_2= []
+        print(w_1counter)
+        print(w_2counter)
+
+        for key,val in w_1counter.items():
+            list_1.append(val)
+            listt_1.append(key)
+        print(list_1)
+        for key,val in w_2counter.items():
+            list_2.append(val)
+            listt_2.append(key)
+        print(list_2)
+        s_list1 =  sorted(list_1)
+        s_list2 =  sorted(list_2)
+        print(listt_1)
+        print(listt_2)
+        flag = True
+        for i  in listt_1:
+            if i not in listt_2:
+                flag = False
+        for i  in listt_2:
+            if i not in listt_1:
+                flag = False
+        print(flag)
+
+        if s_list1 == s_list2 and flag:
+            return True
+        return False
+            
