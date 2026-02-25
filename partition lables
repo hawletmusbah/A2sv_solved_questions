@@ -1,0 +1,19 @@
+class Solution(object):
+    def partitionLabels(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        l = 0
+        end = 0
+        hashmap = {}
+        new_list = []
+        for i,chr in enumerate(s):
+            hashmap[chr]=i
+        for i,chr in enumerate(s):
+            l+=1
+            end  = max(end , hashmap[chr])
+            if end == i:
+                new_list.append(l)
+                l = 0
+        return new_list
