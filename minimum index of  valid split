@@ -1,0 +1,37 @@
+class Solution:
+    def minimumIndex(self, nums: List[int]) -> int:
+        n = len(nums)
+        count = Counter(nums)
+        #print(count)
+        for m in count:
+            if (count[m]*2) > n:
+                dom = m
+                tot_count = count[m]
+                
+       
+        #print(dom)
+        curr_count = 0
+        for i in range(n-1):
+            
+            if nums[i] == dom:
+                curr_count += 1
+                rem_count = tot_count - curr_count
+            len_left = i+1
+            len_right = n - len_left
+
+            if (curr_count*2) > len_left and (rem_count *2) > len_right:
+                return i
+        return -1
+
+            
+
+
+
+
+       
+        
+        
+
+        
+
+        
