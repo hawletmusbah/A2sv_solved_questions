@@ -1,0 +1,24 @@
+class Solution(object):
+    def dividePlayers(self, skill):
+        """
+        :type skill: List[int]
+        :rtype: int
+        """
+        l = 0
+        r = len(skill)-1
+        count = 0
+        skill.sort()
+        target = skill[r] + skill[l]
+        while r > l: 
+            tempo_target = skill[r] + skill[l] 
+            if tempo_target == target:
+                count+=skill[r]*skill[l]
+                r -=1
+                l +=1
+            else:
+                return -1
+        return count
+            
+
+
+        
