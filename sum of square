@@ -1,0 +1,17 @@
+class Solution(object):
+    def judgeSquareSum(self, c):
+        """
+        :type c: int
+        :rtype: bool
+        """
+        
+        l = 0
+        r = int(sqrt(c))
+        while r>=l:
+            if l**2 +r**2 > c:
+                r -=1
+            elif l**2 + r**2 < c:
+                l+=1
+            else:
+                return True
+        return False
