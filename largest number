@@ -1,0 +1,23 @@
+class Solution:
+    def comparator(self, a,b):
+        if a+b > b+a:
+            return -1
+        elif a+b < b+a:
+            return 1
+        else:
+            return 0
+
+
+    def largestNumber(self, nums: List[int]) -> str:
+        nums =list(map(str, nums)) 
+        nums.sort(key = cmp_to_key(self.comparator))
+        print(nums)
+        total = 0
+        for i in nums:
+            total += int(i)
+        x = "".join(nums)
+        if total == 0: 
+            return "0"
+        else:
+            return x
+        
