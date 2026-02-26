@@ -1,0 +1,14 @@
+from collections import Counter
+t = int(input())
+for i in range(t):
+    stri = input()
+    i = 0 
+    n = len(stri)
+    working_letter = set()
+    while i < n:
+        if i == n-1 or  stri[i] != stri[i+1]  :
+            working_letter.add(stri[i])
+            i+=1
+        else:
+            i+=2
+    print("".join(sorted(working_letter)))
