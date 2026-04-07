@@ -2,7 +2,7 @@
 
 **Difficulty:** Medium
 
-**Problem:** [Minimum-Moves-to-Reach-Target-Score](https://leetcode.com/problems/minimum-moves-to-reach-target-score/submissions/1970962404/)
+**Problem:** [Minimum-Moves-to-Reach-Target-Score](https://leetcode.com/problems/minimum-moves-to-reach-target-score/)
 
 ---
 
