@@ -2,7 +2,7 @@
 
 **Difficulty:** Medium
 
-**Problem:** [Maximum-Candies-Allocated-to-K-Children](https://leetcode.com/problems/maximum-candies-allocated-to-k-children/)
+**Problem:** [Maximum-Candies-Allocated-to-K-Children](https://leetcode.com/problems/maximum-candies-allocated-to-k-children/submissions/1975775791/)
 
 ---
 
