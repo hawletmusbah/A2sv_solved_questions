@@ -1,53 +1,72 @@
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
-        
+        # counts = [0]*len(nums)
+        # for i in range(len(nums)):
+        #     number  = nums[i]
+        #     for j in range(i+1,len(nums)):
+        #         if nums[j] < number:
+        #             counts[i] += 1
+        # return counts \
+        # indexed_nums = list(enumerate(nums))
+        # def merge_sort(arr):
+        #     mid = len(arr)//2
+        #     left = merge(arr[:mid])
+        #     right = merge(arr[mid:])
+
+
+        # n = len(nums) 
+        # count = [0]*len(nums)
+        # def merge(left , right):
+        #     i = 0
+        #     j = 0 
+        #     new_list = []
+        #     while i < len(left) and j < len(right):
+        #         if left[i] < right[j]:
+        #             new_list.append(left[i][0])
+        #             count[left[1]] += j
+        #             i += 1
+        #         else:
+        #             new_list.append(right[j][0])
+        #             j += 1
         n = len(nums)
-        counts = [0] * n
-        # Store indices to keep track of original positions after sorting
-        indices = list(range(n))
+        self.count = [0] * n
         
-        def merge_sort(arr_indices):
-            if len(arr_indices) <= 1:
-                return arr_indices
+        indexed_nums = list(enumerate(nums)) 
+        indexed_nums = [(nums[i], i) for i in range(n)]
+        
+        def merge_sort(arr):
+            if len(arr) <= 1:
+                return arr
             
-            mid = len(arr_indices) // 2
-            left = merge_sort(arr_indices[:mid])
-            right = merge_sort(arr_indices[mid:])
-            
+            mid = len(arr) // 2
+            left = merge_sort(arr[:mid])
+            right = merge_sort(arr[mid:])
             return merge(left, right)
 
         def merge(left, right):
-            merged = []
-            l_ptr = 0
-            r_ptr = 0
-            # This keeps track of how many elements from the right side 
-            # are smaller than the current element from the left side
-            right_smaller_count = 0
+            i = 0
+            j = 0 
+            new_list = []
             
-            while l_ptr < len(left) and r_ptr < len(right):
-                # If the element in the right side is smaller
-                if nums[right[r_ptr]] < nums[left[l_ptr]]:
-                    merged.append(right[r_ptr])
-                    right_smaller_count += 1
-                    r_ptr += 1
+            while i < len(left) and j < len(right):
+                if left[i][0] <= right[j][0]:
+                    self.count[left[i][1]] += j
+                    new_list.append(left[i])
+                    i += 1
                 else:
-                    # If the element in the left side is smaller or equal
-                    # We add the total count of smaller elements found in the right so far
-                    counts[left[l_ptr]] += right_smaller_count
-                    merged.append(left[l_ptr])
-                    l_ptr += 1
+                    new_list.append(right[j])
+                    j += 1
+            while i < len(left):
+                self.count[left[i][1]] += j
+                new_list.append(left[i])
+                i += 1
             
-            # Cleanup remaining elements
-            while l_ptr < len(left):
-                counts[left[l_ptr]] += right_smaller_count
-                merged.append(left[l_ptr])
-                l_ptr += 1
+            
+            while j < len(right):
+                new_list.append(right[j])
+                j += 1
                 
-            while r_ptr < len(right):
-                merged.append(right[r_ptr])
-                r_ptr += 1
-                
-            return merged
+            return new_list
 
-        merge_sort(indices)
-        return counts
+        merge_sort(indexed_nums)
+        return self.count
