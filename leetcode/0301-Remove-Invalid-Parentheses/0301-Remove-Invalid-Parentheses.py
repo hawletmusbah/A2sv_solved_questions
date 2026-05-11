@@ -1,28 +1,51 @@
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        result = []
+    def removeInvalidParentheses(self, s: str) -> List[str]:
+        self.longest_string = -1
+        self.res = set()
+        self.dfs(s, 0, [], 0, 0)
         
-        my_dict = {
-            "2": "abc", "3": "def", "4": "ghi", "5": "jkl",
-            "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"
-        }
-        if not digits:
-            return []
-        else:
-            
+        
+        return list(self.res) if self.res else [""]
 
-            def backtracking(path,index):
+    def dfs(self, string, cur_idx, cur_res, l_count, r_count):
+        
+        if cur_idx >= len(string):
+           
+            if l_count == r_count:
+                current_str = "".join(cur_res)
                 
-                #base case 
-                if len(path) == len(digits):
-                    result.append("".join(path))
-                    return
+               
+                if len(current_str) > self.longest_string:
+                    self.longest_string = len(current_str)
+                    self.res = {current_str}
+               
+                elif len(current_str) == self.longest_string:
+                    self.res.add(current_str)
+            return
 
-                c_digits = digits[index]
-                letters = my_dict[c_digits]
-                for letter in letters:
-                    path.append(letter)
-                    backtracking(path,index + 1)
-                    path.pop()
-            backtracking([],0)
-            return result
+        cur_char = string[cur_idx]
+
+        if cur_char == "(":
+            # Choice 1: Keep the '('
+            cur_res.append(cur_char)
+            self.dfs(string, cur_idx + 1, cur_res, l_count + 1, r_count)
+            cur_res.pop() # Backtrack
+
+            # Choice 2: Remove the '('
+            self.dfs(string, cur_idx + 1, cur_res, l_count, r_count)
+
+        elif cur_char == ")":
+            # Choice 1: Remove the ')'
+            self.dfs(string, cur_idx + 1, cur_res, l_count, r_count)
+
+            # Choice 2: Keep the ')' (Only if it doesn't make the string invalid)
+            if l_count > r_count:
+                cur_res.append(cur_char)
+                self.dfs(string, cur_idx + 1, cur_res, l_count, r_count + 1)
+                cur_res.pop() # Backtrack
+
+        else:
+            # It's a letter (a, b, c...)
+            cur_res.append(cur_char)
+            self.dfs(string, cur_idx + 1, cur_res, l_count, r_count)
+            cur_res.pop() # Backtrack
